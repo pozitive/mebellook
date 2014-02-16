@@ -1,0 +1,18 @@
+.sticky
+  %nav.top-bar.shadow{data: {topbar: ""}}
+    %ul.title-area
+      %li.name
+        %h1#logo
+          = link_to (image_tag('house_logo.png',  width: '30') + image_tag('slogan_logo.png', width: '130')).html_safe, root_path
+      %li.toggle-topbar.menu-icon
+        %a{href: "#"}
+          %span Menu
+    %section{class: "top-bar-section"}
+      %ul{class: "right"}
+        %li.active= link_to "ГЛАВНАЯ"
+        %li
+          %a{href: "#about"} О НАС
+        %li= link_to "СЕРВИС", root_path
+        %li= link_to "КАТАЛОГ", root_path
+        %li= link_to "КЛИЕНТАМ", root_path
+        %li= link_to "ОБРАТНАЯ СВЯЗЬ", root_path
