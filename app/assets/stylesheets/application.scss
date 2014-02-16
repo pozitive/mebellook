@@ -55,34 +55,68 @@
 	    color: #fff;
 	}
     }
-    .panel {
-	background-color: #fff;
-	margin-top:0;
-	padding-top:0;
-	h3.fancy {
-	    line-height: 0;
-	    margin-bottom: 35px;
-	    span {
-		display: inline-block;
-		position: relative;
-		&:after, &:before {
-		    content: "";
-		    height: 0;
-		    position: absolute;
-		    top:0;
-		}
+}
+.panel.white {
+    background-color: #fff;
+    margin-top:0;
+    padding-top:0;
+    h3.fancy {
+	line-height: 0;
+	margin-bottom: 35px;
+	span {
+	    display: inline-block;
+	    position: relative;
+	    &:after, &:before {
+		content: "";
+		height: 0;
+		position: absolute;
+		top:0;
 	    }
 	}
     }
 }
+
 #services {
     background: image-url("services.jpg") no-repeat fixed 0 0 / cover rgba(0, 0, 0, 0);
     padding: 80px 0 50px;
     text-align: center;
-    .panel {
-	background-color: #fff;
-	margin-top:0;
-	padding-top:0;
+    .services {
+	margin-top: 20px;
+    }
+}
+#catalog {
+    padding: 80px 0 50px;
+    text-align: center;
+}
+#clients {
+    background: image-url("clients.jpg") no-repeat fixed 0 0 / cover rgba(0, 0, 0, 0);
+    padding: 80px 0 50px;
+    text-align: center;
+    .list {
+	margin-top: 20px;
+    }
+    .panel.white {
+	border-width: 0px;
+	background-color: rgba(40, 30, 20, 0.75);
+    }
+    h3, p, a, ul, li {
+	color: #fff;
+    }
+}
+#contact {
+    padding: 80px 0 50px;
+    text-align: center;
+}
+#mail {
+    background: image-url("stripes.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #DDD;
+    margin: 0;
+    padding: 0;
+    h3.fancy {
+	line-height: 0;
+	margin-bottom: 0px;
+    }
+    .title {
 	h3.fancy {
 	    line-height: 0;
 	    margin-bottom: 35px;
@@ -98,5 +132,20 @@
 	    }
 	}
     }
+    .details {
+	border: 1px solid #DDD;
+	background: #fff;
+	padding: 50px 0;
+	margin: -20px 15px 15px;
 
+    }
+    textarea {
+	height: 150px;
+    }
+}
+
+#copyright {
+    margin: 50px 0;
+    padding: 0;
+    text-align: center;
 }
