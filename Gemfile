@@ -17,7 +17,10 @@ gem 'high_voltage'
 # gem 'friendly_id', '~> 5.0.0' # Bryan: for more REST-ful routes, use human-readable IDs
 gem 'compass-rails', github: "Compass/compass-rails"
 gem 'foundation-rails'
-gem "haml-rails"
+gem 'haml-rails'
+gem 'rmagick', '2.13.2', :git=>'http://github.com/rmagick/rmagick.git'
+gem 'carrierwave'
+
 
 group :test do
   gem 'capybara' # Simulates user actions for cucumber

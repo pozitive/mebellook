@@ -9,13 +9,7 @@
     = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tags
   %body
-    = render 'layouts/topbar'
-    = render 'layouts/header'
-    = render 'layouts/about'
-    = render 'layouts/services'
-    = render 'layouts/catalog'
-    = render 'layouts/clients'
-    = render 'layouts/contact'
+    = yield :top
     = yield
-    = render 'layouts/copyright'
+    = yield :bottom
     = javascript_include_tag "application"
