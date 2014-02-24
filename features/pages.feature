@@ -4,4 +4,5 @@ Feature: Static pages
   I want there to be static pages
 
   Scenario: Render home page
-    Given I am on the home page
+    Given I visit the site
+
