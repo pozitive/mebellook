@@ -14,12 +14,14 @@
     %tr
       %td= unit.name
       %td= image_tag unit.image_url(:thumb).to_s
-      %td= unit.style
+      %td= unit.style.try(:name)
       %td= unit.price
-      %td= link_to 'Просмотреть', unit
-      %td= link_to 'Редактировать', edit_unit_path(unit)
-      %td= link_to 'Удалить', unit, :method => :delete, :data => { :confirm => 'Вы уверены?' }
+      %td= unit
+      %td= link_to 'Просмотреть', style_unit_path(@style, unit.id)
+      %td= link_to 'Редактировать', edit_style_unit_path(@style, unit)
+      %td= link_to 'Удалить', style_unit_path(@style, unit), :method => :delete, :data => { :confirm => 'Вы уверены?' }
+        
 
 %br
+=link_to "New Unit", new_style_unit_path(@style)
 
-= link_to 'New Unit', new_unit_path

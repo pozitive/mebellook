@@ -1,5 +1,6 @@
 class UnitsController < ApplicationController
   before_action :set_unit, only: [:show, :edit, :update, :destroy]
+  before_action :find_style
 
   # GET /units
   # GET /units.json
@@ -24,11 +25,10 @@ class UnitsController < ApplicationController
   # POST /units
   # POST /units.json
   def create
-    @unit = Unit.new(unit_params)
-
+    @unit = @style.units.build(unit_params)
     respond_to do |format|
       if @unit.save
-        format.html { redirect_to @unit, notice: 'Unit was successfully created.' }
+        format.html { redirect_to style_unit_path(@style, @unit), notice: 'Unit was successfully created.' }
         format.json { render action: 'show', status: :created, location: @unit }
       else
         format.html { render action: 'new' }
@@ -42,7 +42,7 @@ class UnitsController < ApplicationController
   def update
     respond_to do |format|
       if @unit.update(unit_params)
-        format.html { redirect_to @unit, notice: 'Unit was successfully updated.' }
+        format.html { redirect_to  style_unit_path(@style, @unit), notice: 'Unit was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -56,12 +56,17 @@ class UnitsController < ApplicationController
   def destroy
     @unit.destroy
     respond_to do |format|
-      format.html { redirect_to units_url }
+      format.html { redirect_to style_units_path(@style) }
       format.json { head :no_content }
     end
   end
 
   private
+    def find_style
+      if params[:style_id]
+        @style = Style.find(params[:style_id])
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_unit
       @unit = Unit.find(params[:id])
@@ -69,6 +74,6 @@ class UnitsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def unit_params
-      params.require(:unit).permit(:name, :image, :style, :price)
+      params.require(:unit).permit(:name, :image, :price)
     end
 end

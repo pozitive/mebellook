@@ -14,14 +14,15 @@
       = image_tag @unit.image_url(:large).to_s, data: {interchange: "[#{@unit.image_url(:small).to_s}, (small)], [#{@unit.image_url(:medium).to_s}, (medium)], [#{@unit.image_url(:large).to_s}, (large)]"}
   %h3
     %span Стиль:
-    %span= @unit.style
+    %span= @unit.style.try(:name)
 
 %ul.button-group
   %li
-    = link_to 'Редактировать', edit_unit_path(@unit), class: 'button'
+    = link_to 'Назад', style_units_path(@style), class: 'button secondary'
   %li
-    = link_to 'Назад', units_path, class: 'button secondary'
+    = link_to 'Редактировать', edit_style_unit_path(@style, @unit), class: 'button'
   %li
-    = link_to 'Создать новый', new_unit_path, class: 'button success'
+    = link_to 'Создать новый', new_style_unit_path(@style, @unit), class: 'button success'
   %li
-    = link_to 'Удалить', @unit, :method => :delete, :data => { :confirm => 'Вы уверены?' }, class: 'button alert'
+    = link_to 'Удалить', style_unit_path(@style, @unit), :method => :delete, :data => { :confirm => 'Вы уверены?' }, class: 'button alert'
+

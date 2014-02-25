@@ -1,5 +1,7 @@
 Mebellook::Application.routes.draw do
-  resources :units
+  resources :styles do
+    resources :units
+  end
 
   get 'pages/home' => 'high_voltage/pages#show', id: 'home'
 
