@@ -1,18 +1,27 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @unit.name
-%p
-  %b Image:
-  = @unit.image
-%p
-  %b Style:
-  = @unit.style
-%p
-  %b Price:
-  = @unit.price
+.units
+  .columns.small-12.medium-9
+    %h1
+      = @unit.name
+  = if @unit.price?
+    .columns.small-12.medium-3
+      %h1.right
+        %span $
+        %span= @unit.price
+  %p
+    %a.th
+      = image_tag @unit.image_url(:large).to_s, data: {interchange: "[#{@unit.image_url(:small).to_s}, (small)], [#{@unit.image_url(:medium).to_s}, (medium)], [#{@unit.image_url(:large).to_s}, (large)]"}
+  %h3
+    %span Стиль:
+    %span= @unit.style
 
-= link_to 'Edit', edit_unit_path(@unit)
-\|
-= link_to 'Back', units_path
+%ul.button-group
+  %li
+    = link_to 'Редактировать', edit_unit_path(@unit), class: 'button'
+  %li
+    = link_to 'Назад', units_path, class: 'button secondary'
+  %li
+    = link_to 'Создать новый', new_unit_path, class: 'button success'
+  %li
+    = link_to 'Удалить', @unit, :method => :delete, :data => { :confirm => 'Вы уверены?' }, class: 'button alert'

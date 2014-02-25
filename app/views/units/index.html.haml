@@ -1,11 +1,11 @@
-%h1 Listing units
+%h1 Каталог мебели
 
 %table
   %tr
-    %th Name
-    %th Image
-    %th Style
-    %th Price
+    %th Название
+    %th Фотография
+    %th Стиль
+    %th Стоимость $
     %th
     %th
     %th
@@ -13,12 +13,12 @@
   - @units.each do |unit|
     %tr
       %td= unit.name
-      %td= unit.image
+      %td= image_tag unit.image_url(:thumb).to_s
       %td= unit.style
       %td= unit.price
-      %td= link_to 'Show', unit
-      %td= link_to 'Edit', edit_unit_path(unit)
-      %td= link_to 'Destroy', unit, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'Просмотреть', unit
+      %td= link_to 'Редактировать', edit_unit_path(unit)
+      %td= link_to 'Удалить', unit, :method => :delete, :data => { :confirm => 'Вы уверены?' }
 
 %br
 
