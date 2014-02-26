@@ -20,7 +20,8 @@ gem 'foundation-rails'
 gem 'haml-rails'
 gem 'rmagick', '2.13.2', :git=>'http://github.com/rmagick/rmagick.git'
 gem 'carrierwave'
-
+gem 'fog'
+gem 'figaro'
 
 group :test do
   gem 'capybara' # Simulates user actions for cucumber

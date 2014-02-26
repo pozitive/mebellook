@@ -1,19 +1,38 @@
-%h1 Listing styles
+= content_for :top do
+  = render 'layouts/header'
+  = render 'layouts/about'
+  = render 'layouts/services'
 
-%table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
+  %section#catalog
+    .row
+      .panel.white
+        %h3.fancy <span>Каталог</span>
+        .row
+          .columns.small-12
+            %p  В представленной галерее мы предлагаем вам ознакомится с той малой долей того ассортимента который могут предложить вам мебельные  фабрики Китая.
+            %p Цены даны с условием доставки и уплаты таможенных платежей в России.
+        .row
+          .columns.small-12.filters
+            %ul#filters
+              %li
+                %a{href: "#"} Все стили
+              - Style.all.each do |style|
+                %li= link_to style.name, "#"
+                
 
-  - @styles.each do |style|
-    %tr
-      %td= style.name
-      %td= link_to 'Show', style
-      %td= link_to 'Edit', edit_style_path(style)
-      %td= link_to 'Destroy', style, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        .row
+          %ul.small-block-grid-1.medium-block-grid-2.large-block-grid-3.clearing-thumbs{data: {clearing: ""}}
+            - Unit.all.limit(9).each do |unit|
+              %li.center
+                %figure
+                  %a{href: "#{unit.image_url(:large).to_s}"}
+                    = image_tag unit.image_url(:thumb).to_s, data: {caption: "#{unit.name} #{unit.price.floor if unit.price.present?}"}
+                  %figcaption
+                    %h3= unit.name
+                    %p= unit.price if unit.price.present?
 
-%br
 
-= link_to 'New Style', new_style_path
+= content_for :bottom do
+  = render 'layouts/clients'
+  = render 'layouts/contact'
+  = render 'layouts/copyright'

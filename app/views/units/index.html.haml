@@ -1,4 +1,4 @@
-%h1 Каталог мебели
+%h1= @style.name
 
 %table
   %tr
@@ -16,12 +16,13 @@
       %td= image_tag unit.image_url(:thumb).to_s
       %td= unit.style.try(:name)
       %td= unit.price
-      %td= unit
-      %td= link_to 'Просмотреть', style_unit_path(@style, unit.id)
-      %td= link_to 'Редактировать', edit_style_unit_path(@style, unit)
-      %td= link_to 'Удалить', style_unit_path(@style, unit), :method => :delete, :data => { :confirm => 'Вы уверены?' }
+      %td= link_to 'Просмотреть', style_unit_path(@style, unit.id), class: 'button tiny secondary'
+      %td= link_to 'Редактировать', edit_style_unit_path(@style, unit), class: 'button tiny'
+      %td= link_to 'Удалить', style_unit_path(@style, unit), :method => :delete, :data => { :confirm => 'Вы уверены?' }, class: 'button tiny alert'
         
 
-%br
-=link_to "New Unit", new_style_unit_path(@style)
-
+%ul.button-group
+  %li
+    = link_to "New Unit", new_style_unit_path(@style), class: 'button success'
+  %li
+    = link_to 'Back', style_path(@style), class: 'button secondary'

@@ -5,7 +5,7 @@ class UnitsController < ApplicationController
   # GET /units
   # GET /units.json
   def index
-    @units = Unit.all
+    @units = Unit.where('style_id = ?', @style.id).order(:created_at)
   end
 
   # GET /units/1

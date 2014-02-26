@@ -1,27 +1,22 @@
 %p#notice= notice
 
-%p
-  %b Name:
+%h1
   = @style.name
 
-%p
+%ul.small-block-grid-4
   - @style.units.each do |unit|
-    %h1
-      = @unit.name
-    = if @unit.price?
-      .columns.small-12.medium-3
-        %h1.right
-          %span $
-          %span= @unit.price
-    %p
-      %a.th
-        = image_tag @unit.image_url(:large).to_s, data: {interchange: "[#{@unit.image_url(:small).to_s}, (small)], [#{@unit.image_url(:medium).to_s}, (medium)], [#{@unit.image_url(:large).to_s}, (large)]"}
-    %h3
-      %span Стиль:
-      %span= @unit.style
-        
-= link_to 'Добавить объект', new_style_unit_path(style_id: @style.id)
-\|
-= link_to 'Edit', edit_style_path(@style)
-\|
-= link_to 'Back', styles_path
+    %li
+      %p
+        = unit.name
+      %a.th{href: "#{style_unit_path(@style, unit.id)}"}
+        = image_tag unit.image_url(:small).to_s
+
+%ul.button-group
+  %li
+    = link_to 'Back', styles_path, class: 'button secondary'
+  %li
+    = link_to 'Edit', edit_style_path(@style), class: 'button'
+  %li
+    = link_to 'Добавить объект', new_style_unit_path(style_id: @style.id), class: 'button success'
+  %li
+    = link_to 'Добавить стиль', new_style_path, class: 'button success'
