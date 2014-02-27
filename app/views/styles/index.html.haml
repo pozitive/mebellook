@@ -1,29 +1,23 @@
-= content_for :top do
-  %section#catalog
-    .row
-      .panel.white
-        %h3.fancy <span>Каталог</span>
-        .row
-          .columns.small-12
-            %p  В представленной галерее мы предлагаем вам ознакомится с той малой долей того ассортимента который могут предложить вам мебельные  фабрики Китая.
-            %p Цены даны с условием доставки и уплаты таможенных платежей в России.
-        .row
-          .columns.small-12.filters
-            %ul#filters
-              %li
-                %a{href: "#"} Все стили
-              - Style.all.each do |style|
-                %li= link_to style.name, "#"
+.row
+  .columns.small-12
+    %h1 Стили Мебели
+    %hr
+    %ul.no-bullet
+      - Style.all.each do |style|
+        %li
+          %h3= link_to style.name, style_path(style)
+        %ul.small-block-grid-10
+          - style.units.each do |unit|
+            %li
+              %a.th{href: "#{style_unit_path(style, unit.id)}"}
+                = image_tag unit.image_url(:thumb).to_s
+        %ul.button-group
+          %li
+            = link_to 'Edit', edit_style_path(style), class: 'button tiny'
+          %li
+            = link_to 'Добавить объект', new_style_unit_path(style_id: style.id), class: 'button success tiny'
+        %hr
 
+    = link_to 'Добавить стиль', new_style_path, class: 'button success'
 
-        .row
-          %ul.small-block-grid-1.medium-block-grid-2.large-block-grid-3.clearing-thumbs{data: {clearing: ""}}
-            - Unit.all.limit(9).each do |unit|
-              %li.center
-                %figure
-                  %a{href: "#{unit.image_url(:large).to_s}"}
-                    = image_tag unit.image_url(:thumb).to_s, data: {caption: "#{unit.name} #{unit.price.floor if unit.price.present?}"}
-                  %figcaption
-                    %h3= unit.name
-                    %p= unit.price if unit.price.present?
 
