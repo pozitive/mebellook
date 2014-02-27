@@ -15,21 +15,22 @@
           .columns.small-12.filters
             %ul#filters
               %li
-                %a{href: "#"} Все стили
+                %a{href: "?style_id=0#catalog"} Все стили
               - Style.all.each do |style|
-                %li= link_to style.name, "#"
+                %li= link_to style.name, ("?style_id=" + style.id.to_s + "#catalog")
                 
 
         .row
           %ul.small-block-grid-1.medium-block-grid-2.large-block-grid-3.clearing-thumbs{data: {clearing: ""}}
-            - Unit.all.limit(9).each do |unit|
+            - units = Style.find_by_id(params["style_id"]).try(:units) || Unit.all
+            - units.each do |unit|
               %li.center
                 %figure
                   %a{href: "#{unit.image_url(:large).to_s}"}
                     = image_tag unit.image_url(:thumb).to_s, data: {caption: "#{unit.name} #{unit.price.floor if unit.price.present?}"}
-                  %figcaption
-                    %h3= unit.name
-                    %p= unit.price if unit.price.present?
+                    %figcaption
+                      %h3= unit.name
+                      %p= unit.price if unit.price.present?
 
 
 = content_for :bottom do
