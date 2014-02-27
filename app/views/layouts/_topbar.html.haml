@@ -1,4 +1,4 @@
-%header.sticky
+%header#topbar.fixed
   %nav.top-bar.shadow{data: {topbar: ""}}
     %ul.title-area
       %li.name
@@ -9,7 +9,8 @@
           %span Menu
     %section{class: "top-bar-section"}
       %ul{class: "right"}
-        %li.active= link_to "ГЛАВНАЯ"
+        %li
+          %a{href: "#hero"} ГЛАВНАЯ
         %li
           %a{href: "#about"} О НАС
         %li

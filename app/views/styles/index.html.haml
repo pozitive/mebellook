@@ -1,8 +1,4 @@
 = content_for :top do
-  = render 'layouts/header'
-  = render 'layouts/about'
-  = render 'layouts/services'
-
   %section#catalog
     .row
       .panel.white
@@ -18,7 +14,7 @@
                 %a{href: "#"} Все стили
               - Style.all.each do |style|
                 %li= link_to style.name, "#"
-                
+
 
         .row
           %ul.small-block-grid-1.medium-block-grid-2.large-block-grid-3.clearing-thumbs{data: {clearing: ""}}
@@ -31,8 +27,3 @@
                     %h3= unit.name
                     %p= unit.price if unit.price.present?
 
-
-= content_for :bottom do
-  = render 'layouts/clients'
-  = render 'layouts/contact'
-  = render 'layouts/copyright'

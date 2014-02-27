@@ -2,11 +2,37 @@
   = render 'layouts/header'
   = render 'layouts/about'
   = render 'layouts/services'
-  = render 'layouts/catalog'
-  = render 'layouts/clients'
-  = render 'layouts/contact'
+
+  %section#catalog
+    .row
+      .panel.white
+        %h3.fancy <span>Каталог</span>
+        .row
+          .columns.small-12
+            %p  В представленной галерее мы предлагаем вам ознакомится с той малой долей того ассортимента который могут предложить вам мебельные  фабрики Китая.
+            %p Цены даны с условием доставки и уплаты таможенных платежей в России.
+        .row
+          .columns.small-12.filters
+            %ul#filters
+              %li
+                %a{href: "#"} Все стили
+              - Style.all.each do |style|
+                %li= link_to style.name, "#"
+                
+
+        .row
+          %ul.small-block-grid-1.medium-block-grid-2.large-block-grid-3.clearing-thumbs{data: {clearing: ""}}
+            - Unit.all.limit(9).each do |unit|
+              %li.center
+                %figure
+                  %a{href: "#{unit.image_url(:large).to_s}"}
+                    = image_tag unit.image_url(:thumb).to_s, data: {caption: "#{unit.name} #{unit.price.floor if unit.price.present?}"}
+                  %figcaption
+                    %h3= unit.name
+                    %p= unit.price if unit.price.present?
+
 
 = content_for :bottom do
-  = render 'layouts/copyright'
-
+  = render 'layouts/clients'
+  = render 'layouts/contact'
 

@@ -19,3 +19,9 @@
 $(function(){ $(document).foundation(); });
 // When the Document Object Model is ready
 
+$('a').click(function(){
+    $('html, body').animate({
+        scrollTop: $( $.attr(this, 'href') ).offset().top
+    }, 500);
+    return false;
+});
